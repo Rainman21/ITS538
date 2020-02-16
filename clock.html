@@ -1,14 +1,110 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SVG Clock</title>
+    <title>Canvas and SVG Clock</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        
+        background-color: black;
+        color: white;
+      }
+
+      body > * {
+        margin: auto;
+      }
+
+      svg {
+        width: 256px;
+        height: 256px;
+      }
+
+      svg > g {
+        transform: translate(128px, 128px);
+      }
+
+      circle {
+        stroke: white;
+        stroke-width: 2px;
+      }
+
+      #numbers {
+        transform: translate(0, 6px);
+      }
+
+      #numbers > text {
+        fill: white;
+        text-anchor: middle;
+      }
+
+      #ticks > line {
+        stroke: white;
+      }
+
+      #hands {
+        stroke: white;
+        stroke-width: 4px;
+        transform: rotate(-90deg);
+      }
+
+      line {
+        animation: handrotation infinite linear;
+      }
+
+      #hour > line {
+        animation-duration: 86400s;
+      }
+
+      #minute > line {
+        animation-duration: 3600s;
+      }
+
+      #second > line {
+        animation-duration: 60s;
+        stroke: red;
+        stroke-width: 2px;
+      }
+
+      @keyframes handrotation {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+
+    </style>
   </head>
 <body>
 
 <canvas id="canvas" width="400" height="400"
 style="background-color:#333">
 </canvas>
-
+<br>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <circle r="126"/>
+    <g id="numbers"/>
+    <g id="ticks"/>
+    <g id="hands">
+      <g id="hour">
+        <line x1="-6" y1="0" x2="60" y2="0"/>
+      </g>
+      <g id="minute">
+        <line x1="-9" y1="0" x2="90" y2="0"/>
+      </g>
+      <g id="second">
+        <line x1="-12" y1="0" x2="120" y2="0"/>
+      </g>
+    </g>
+    <circle r="4"/>
+  </g>
+</svg>
 <script>
 //page from https://www.w3schools.com/graphics/tryit.asp?filename=trycanvas_clock_start
 var canvas = document.getElementById("canvas");
@@ -16,7 +112,7 @@ var ctx = canvas.getContext("2d");
 var radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90
-setInterval(drawClock, 1000);
+setInterval(drawClock, 10);
 
 function drawClock() {
   drawFace(ctx, radius);
@@ -93,4 +189,55 @@ function drawHand(ctx, pos, length, width) {
 </script>
 
 </body>
+<script>
+  //SVG Clock from https://codepen.io/binoculars/pen/wMOxrb
+  var radius = 114;
+var outerRadius = radius - 10;
+var dtg = new Date();
+var hands = {};
+var numbers = document.getElementById('numbers');
+var ticks = document.getElementById('ticks');
+var mark;
+var rotation;
+var number;
+var angle;
+
+hands.second = (dtg.getSeconds() + dtg.getMilliseconds() / 1000) / 60;
+hands.minute = (dtg.getMinutes() + hands.second) / 60;
+hands.hour = (dtg.getHours() % 12 + hands.minute) / 12;
+
+for (key in hands) {
+  document.getElementById(key).setAttribute('transform', "rotate(" + (hands[key] * 360) + ")");
+}
+
+
+function cE(type) {
+  return document.createElementNS("http://www.w3.org/2000/svg", type);
+}
+
+function createMark(group, outerRadius, length, rotation) {
+  var mark = cE('line');
+  mark.setAttribute('x1', outerRadius - length);
+  mark.setAttribute('x2', outerRadius);
+  mark.setAttribute('y1', '0');
+  mark.setAttribute('y2', '0');
+  mark.setAttribute('transform', 'rotate(' + rotation + ')');
+  group.appendChild(mark);
+}
+
+for (var i = 0; i < 12; i++) {
+  number = cE('text');
+  angle = Math.PI / 6 * i;
+  number.setAttribute('x', radius * Math.cos(angle));
+  number.setAttribute('y', radius * Math.sin(angle));
+  number.innerHTML = ((i + 2) % 12 + 1);
+  numbers.appendChild(number);
+  rotation = i * 30;
+  createMark(ticks, outerRadius, 16, rotation);
+
+  for (j = 1; j < 5; j++) {
+    createMark(ticks, outerRadius, 8, rotation + j * 6);
+  }
+}
+</script>
 </html>
