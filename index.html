@@ -1,0 +1,101 @@
+<!-- You can put any number of comments you want above the html tag -->
+<!-- Syntax Reference: https://www.w3.org/TR/html52/syntax.html -->
+
+<html>
+  <head>
+    <title>ITS 538 Basic Page</title>
+    <script>
+      //Code Goes here
+      // How do I modify the document?
+      //        https://www.w3schools.com/js/js_htmldom_document.asp
+      //How do I write a function?
+      //    https://www.w3schools.com/js/js_functions.asp
+      //Specifications
+      //  https://www.w3.org/TR/html52/introduction.html#a-quick-introduction-to-html
+      //  <!-- CSS Reference at https://www.w3schools.com/w3css/default.asp --!>
+      
+    </script>
+    <!--CSS Reference at https://www.w3schools.com/w3css/default.asp  -->
+    <style>
+      body {
+        background-color: lightblue;
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+      }
+
+      p {
+        font-family: verdana;
+        font-size: 20px;
+      }
+
+      .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>This is heading 1</h1>
+    This is just a test<br />
+    <p>Some paragraph text</p>
+
+    <h2>Paragraphs</h2>
+    <p id="p1">Paragraph 1</p>
+    <p id="p2">Paragraph 2</p>
+
+    <h2>Divs</h2>
+    <div id="div1">Some text in div1</div>
+    <div id="div2">Some text in div2</div>
+    <div id="div3">Some text in div3</div>
+
+    <h2>Spans</h2>
+    <span id="span1">Some text in span1</span>
+    <span id="span2">Some text in span2</span>
+    <span id="span3">Some text in span3</span>
+    <br />
+    <h2>Buttons</h2>
+
+    <button>button without a handler</button>
+
+    <button
+      type="button"
+      onclick="document.getElementById('demo').innerHTML = Date()"
+    >
+      Click me to display Date and Time.
+    </button>
+
+    <button type="button" onclick="displayRandomNumber()">
+      Click me to change the random number
+    </button>
+
+    <h2>Images</h2>
+    <img id="card1" src="diamond_10.png" /><img />
+    <img id="card2" src="heart_5.png" /><img />
+
+    <h2>Scratch area</h2>
+    <div id='scratchArea' class='scratch'>
+       My Random number choice is <span id='randomnumber'>?</span>
+    </div>
+
+  </body>
+  <script>
+    function displayRandomNumber(){
+      document.getElementById('randomnumber').innerHTML = Math.random();
+    }
+    function displayRandomImage() {
+      //https://www.w3schools.com/js/js_htmldom_document.asp
+      document.getElementById('randomnumber').innerHTML =
+        'Random Number = ' + Math.floor(Math.random() * 53);
+      document.getElementById('card2').setAttribute(src, 'diamond_10.png');
+    }
+  </script>
+</html>

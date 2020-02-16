@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Bezier </h1>
+    <svg height="400" width="450">
+      <path
+        id="lineAB"
+        d="M 100 350 l 150 -300"
+        stroke="red"
+        stroke-width="3"
+        fill="none"
+      />
+      <path
+        id="lineBC"
+        d="M 250 50 l 150 300"
+        stroke="red"
+        stroke-width="3"
+        fill="none"
+      />
+      <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
+      <path
+        d="M 100 350 q 150 -300 300 0"
+        stroke="blue"
+        stroke-width="5"
+        fill="none"
+      />
+      <!-- Mark relevant points -->
+      <g stroke="black" stroke-width="3" fill="black">
+        <circle id="pointA" cx="100" cy="350" r="3" />
+        <circle id="pointB" cx="250" cy="50" r="3" />
+        <circle id="pointC" cx="400" cy="350" r="3" />
+      </g>
+      <!-- Label the points -->
+      <g
+        font-size="30"
+        font-family="sans-serif"
+        fill="black"
+        stroke="none"
+        text-anchor="middle"
+      >
+        <text x="100" y="350" dx="-30">A</text>
+        <text x="250" y="50" dy="-10">B</text>
+        <text x="400" y="350" dx="30">C</text>
+      </g>
+      Sorry, your browser does not support inline SVG.
+    </svg>
+
+    <h1>Linear Gradient</h1>
+ 
+    <svg height="150" width="400">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+      Sorry, your browser does not support inline SVG.
+    </svg>
+  <img id="imggif" src="ellipse2.gif" height="130" /><img />
+  <img id="imgjpg" src="ellipse2.jpg" height="130" /><img />
+  <img id="imgpng" src="ellipse2.png" height="130" /><img />
+    <h1>Gaussian Blur for Shaddow</h1>
+<svg height="120" width="120">
+  <defs>
+    <filter id="filter" x="0" y="0">
+      <feGaussianBlur stdDeviation="5" />
+      <feOffset dx="5" dy="5" />
+    </filter>
+  </defs>
+  <rect width="90" height="90" fill="grey" filter="url(#filter)" />
+  <rect width="90" height="90" fill="yellow" stroke="black" />
+  Sorry, your browser does not support inline SVG.
+</svg>
+<h1>Animations</h1>
+<p><strong>Note:</strong> This example does not work in Internet Explorer and Safari.</p>
+
+<svg width="600" height="600">
+  <rect id="rec" x="300" y="100" width="300" height="100" style="fill:lime">
+    <animate attributeName="x" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="300" to="0" />
+    <animate attributeName="y" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="100" to="0" />
+    <animate attributeName="width" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="300" to="800" />
+    <animate attributeName="height" attributeType="XML" begin="0s" dur="6s" fill="freeze" from="100" to="300" />
+    <animate attributeName="fill" attributeType="CSS" from="lime" to="red" begin="2s" dur="4s" fill="freeze" />
+  </rect>
+  <g transform="translate(100,100)">
+    <text id="TextElement" x="0" y="0" style="font-family:Verdana;font-size:24; visibility:hidden"> It's SVG!
+      <set attributeName="visibility" attributeType="CSS" to="visible" begin="1s" dur="5s" fill="freeze" />
+      <animateMotion path="M 0 0 L 100 100" begin="1s" dur="5s" fill="freeze" />
+      <animate attributeName="fill" attributeType="CSS" from="red" to="blue" begin="1s" dur="5s" fill="freeze" />
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="-30" to="0" begin="1s"
+        dur="5s" fill="freeze" />
+      <animateTransform attributeName="transform" attributeType="XML" type="scale" from="1" to="3" additive="sum"
+        begin="1s" dur="5s" fill="freeze" />
+    </text>
+  </g>
+  Sorry, your browser does not support inline SVG.
+</svg>
+<h3>Links</h3>
+<a href='https://www.w3schools.com/graphics/canvas_clock_start.asp'>https://www.w3schools.com/graphics/canvas_clock_start.asp</a>
+<a href='https://observablehq.com/@peatroot/stars-and-constellations?collection=@observablehq/visualization'>https://observablehq.com/@peatroot/stars-and-constellations?collection=@observablehq/visualization</a>
+  </body>
+</html>
