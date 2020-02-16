@@ -1,0 +1,18 @@
+{
+  "name": "its538",
+  "version": "1.0.0",
+  "description": "My Node Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ITS538"
+  ],
+  "author": "Rick Sprenkle",
+  "license": "MIT",
+  "homepage": "https://github.com/Rainman21/ITS538#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
