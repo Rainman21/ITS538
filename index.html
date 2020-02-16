@@ -18,7 +18,7 @@
     <!--CSS Reference at https://www.w3schools.com/w3css/default.asp  -->
     <style>
       body {
-        background-color: lightblue;
+        background-color: rgb(9, 106, 138);
       }
 
       h1 {
@@ -49,7 +49,7 @@
     <p>Some paragraph text</p>
 
     <h2>Paragraphs</h2>
-    <p id="p1">Paragraph 1</p>
+    <p id="p1" class='para1'>Paragraph 1</p>
     <p id="p2">Paragraph 2</p>
 
     <h2>Divs</h2>
@@ -76,26 +76,32 @@
     <button type="button" onclick="displayRandomNumber()">
       Click me to change the random number
     </button>
-
-    <h2>Images</h2>
-    <img id="card1" src="diamond_10.png" /><img />
-    <img id="card2" src="heart_5.png" /><img />
-
-    <h2>Scratch area</h2>
+    <h2>Output area</h2>
     <div id='scratchArea' class='scratch'>
        My Random number choice is <span id='randomnumber'>?</span>
     </div>
 
+    <div class='scratch'>
+       Current Date is  <span id='demo'>?</span>
+    </div>
+    <h2>Images</h2>
+    <img id="card1" src="./assets/1_S.png" height="120" /><img />
+    <img id="card2" src="./assets/2_S.png" height="120" /><img />
+
+  
+
   </body>
   <script>
     function displayRandomNumber(){
-      document.getElementById('randomnumber').innerHTML = Math.random();
+      let randomNumber = Math.floor(Math.random() * 7+1) 
+      document.getElementById('randomnumber').innerHTML = randomNumber
+      displayImage(randomNumber)
     }
-    function displayRandomImage() {
+    function displayImage(randomNumber) {
       //https://www.w3schools.com/js/js_htmldom_document.asp
-      document.getElementById('randomnumber').innerHTML =
-        'Random Number = ' + Math.floor(Math.random() * 53);
-      document.getElementById('card2').setAttribute(src, 'diamond_10.png');
+      
+      document.getElementById('randomnumber').innerHTML =`Random Number =${randomNumber}`
+      document.getElementById('card2').setAttribute('src', `/assets/${randomNumber}_S.png`);
     }
   </script>
 </html>
