@@ -143,6 +143,28 @@ NOTE if you ever see this error, it is often becuase the URL of page doesn't mat
 ```bash
 Access to fetch at 'http://localhost:8081/listusers' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 ```
+## Debugging your REST APIs
+
+It can take considerable time to setup the server to serve up your REST APIs.  Similarly, it can take considerable time to write web pages to exercise the server APIs.  This is exactly where tools like Postman fit in.
+
+You can download Postman from 
+> https://www.postman.com/downloads/  
+
+There are many competing products, but major advantages Postman has is that it is 
++ Written in Javascript 
++ Shipped as an Electron App (an app that runs on your system using embedded server)
++ Runs on any OS that can run a new browser
++ Has cloud based storage for your apps and can quickly create a Mock server to support http or https.
+
+On the downside, it can be a bit confusing as you often can do one thing multiple ways, but you may have a hard time figuring out how to do it...
+
+*A couple of pointers...*
+
++ Mocks are based on examples -- you click on the examples list for a particular REST call and add examples. These examples are used by the Mock server.
++ Collections drive everything.  Typically you want to create a Collection per API. With that collection, you specify an API Server, and use the environment variables for that server to expedite testing. Typically, these environment variables include
+  + the URL of the mock server stored in the {{url}} variable
+  + the Authorization password {{password}} and username {{username}}
+  + any headers like CORS, etc., that you want to be common for all calls
 
 ## Webpages calling REST APIs
 

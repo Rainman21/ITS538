@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>basic page</title>
+  </head>
+<body>
+  this is about as simple as it gets
+  <button onclick='showUsers()'>Show Users</button>
+  <pre><div id='userlist'>click on button to populate</div></pre>
+  
+
+  <button onclick='requestBeer()'>Request Beer</button>
+  <input id='beerName' maxlength="20">EnterBeer</input>
+  <div id='beerResult'></div>
+
+</body>
+  <script>
+    function requestBeer(){
+      console.log('requesting beer')
+      getBeer().then((beer)=>{
+        displayBeer(beer)}).catch((err) => console.log(err))
+    }
+    function anyToString(data){
+      let typeString = typeof(data)
+      switch(typeString){
+        case 'string':
+          return data;
+        case 'object':
+          return JSON.stringify(data,undefined, 2);
+        case 'number':
+        case 'boolean':
+          return data.toString()
+      }
+    }
+    function displayBeer(beer){
+       document.getElementById('beerResult').innerHTML = anyToString(beer)
+ 
+    }
+  function showUsers() {
+    getUsers().then((users) => {
+      document.getElementById('userlist').innerHTML =
+        JSON.stringify(users, undefined, 2)
+    });
+    // postBeerRequest("bud").then((resonse) => {
+    //   document.getElementById('userlist').innerHTML =
+    //     JSON.stringify(resonse, undefined, 2)
+    // });
+  }
+
+  function getBeer(){
+    //https://179f95e7-3096-45e2-8e0a-d797b941fe45.mock.pstmn.io/beer
+     return fetch('https://179f95e7-3096-45e2-8e0a-d797b941fe45.mock.pstmn.io/beer')
+      .then((response) => {
+        return response.text()
+      })
+      .then((myJson) => {
+        console.log(myJson)
+        return myJson
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  
+    function postBeerRequest(beerName){
+      let beer = {};
+      beer.oz = 16;
+      beer.name = beerName;
+      beer.container = 'bottle';
+
+      fetch('http://localhost:8081/beer', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(beer),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+
+    function getUsers(){
+    return fetch('http://localhost:8081/listusers')
+        .then((response) => {
+          return response.json() //converts response to JSON
+        })
+        .then((myJson) => {
+          console.log(myJson) //logs the JSON object from prev .then
+          return myJson
+        })
+        .catch((err) =>{
+          console.log (err)  //only if the fetch fails or times out
+        })
+      }
+  </script>
+</html>
