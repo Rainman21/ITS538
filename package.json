@@ -13,6 +13,6 @@
   "license": "MIT",
   "homepage": "https://github.com/Rainman21/ITS538#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
